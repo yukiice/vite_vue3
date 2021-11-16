@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {defineComponent,ref} from "vue";
-import {IUseTodo, useTodo} from '@/hooks'
+import {IUseTodo,  useTodo} from '@/hooks'
 export default  defineComponent({
   name:'TodoInput',
   setup(){
@@ -15,6 +15,7 @@ export default  defineComponent({
     const setTodoValue  = (e:KeyboardEvent)=>{
       if (todoValue.value.trim().length){
         setTodo(todoValue.value)
+        todoValue.value = ''
       }
     }
     return {
