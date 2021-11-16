@@ -6,15 +6,15 @@ import {watch} from "vue";
 export interface  IUseTodo {
     setTodo:(value:string)=>void,
     setTodoList:()=>void,
-    removeTodo:()=>void,
-    setStatus:()=>void,
-    setDoing:()=>void,
+    removeTodo:(value:number)=>void,
+    setStatus:(value:number)=>void,
+    setDoing:(value:number)=>void,
 }
 interface  IUseLocalStorage {
     getLocalList:()=>ITodo[],
     setLocalList:(value:ITodo[])=>void
 }
-function  useTodo():{ removeTodo: (id: number) => void; setTodoList: () => void; setDoing: (id: number) => void; setTodo: (value: string) => void; setStatus: (id: number) => void }{
+function  useTodo():IUseTodo{
     const store:Store<any> = useStore()
     const { setLocalList,getLocalList} :IUseLocalStorage = useLocalStorage()
    // 拿到todolist
@@ -24,7 +24,7 @@ function  useTodo():{ removeTodo: (id: number) => void; setTodoList: () => void;
         setLocalList(todoList)
     })
 
-   function setTodo(value:string):void{
+   function setTodo(value:string){
 
        const todo:ITodo = {
            id:new Date().getTime(),
